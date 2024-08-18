@@ -1,0 +1,39 @@
+.header{
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 6px 0px;
+}
+
+.header__wrapper{
+    display: flex;
+    width: 94%;
+    max-width: var(--max-width);
+    height: 4em;
+    line-height: 4em;
+    padding: 0 3%;
+    margin: 0 auto;
+}
+
+.header__logo{
+    display: inline-block;
+    line-height: 5.1em;
+    margin-right: .5em;
+}
+
+.wi{
+    font-size: 2.1em;
+}
+
+.header__brand{
+    font-size: 1.3em;
+}
+
+.header__right-block{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+}
+
+.header__unit-switcher{
+    display: flex;
+    margin: 0 .3em;
+}

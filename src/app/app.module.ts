@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoaderComponent } from './loader/loader.component';
 import { HeaderComponent } from './header/header.component';
+import { UiSwitchModule } from 'ngx-ui-switch';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { HeaderComponent } from './header/header.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    UiSwitchModule
   ],
   providers: [],
   bootstrap: [AppComponent]
