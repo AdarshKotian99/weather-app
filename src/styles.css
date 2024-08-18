@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import '../node_modules/weather-icons/css/weather-icons.min.css';
+/* @import '~ngx-ui-switch/ui-switch.component.scss'; */
+@import '../node_modules/ngx-ui-switch/ui-switch.component.css';
+
 :root{
     --max-width:700px;
 }
