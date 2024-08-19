@@ -1,8 +1,15 @@
 export const appConfig ={
     defaultUnit: 'metric',
+    defaultCity: {
+        coord: {
+          latitude: 51.509865,
+          longitude: -0.118092
+        }
+      }
 };
 
 export const apiConfig = {
+    host: 'https://api.openweathermap.org/data/2.5',
     appId : 'a4674c091cdf4296c1c69451fd036d2f',
     measurementUnits:{
         metric:{
@@ -15,5 +22,8 @@ export const apiConfig = {
             windSpeed: 'mil/h',
             pressure: 'hPa'
         }
+    },
+    updateInterval:{
+        weather: 300000 // 5 minutes
     }
 };
