@@ -26,6 +26,9 @@ export class WeatherService {
     this.unitSystem = appService.getUnitSystem();
    }
   
+   getWeather(): Subject<Weather> {
+    return this.weather;
+  }
    getCurrentWeatherTimestamp(): number {
     return this.currentWeatherTimestamp;
   }
@@ -40,7 +43,8 @@ export class WeatherService {
       window.navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
         this.subscribers.city = this.getWeatherByLocation(latitude,longitude).subscribe((weather) => {
-          resolve(weather.city);
+          resolve(weather);
+          //resolve(weather.city);
           //this.hideLoader();
         });
       },(error) => {
@@ -48,7 +52,8 @@ export class WeatherService {
         if (error.code === 1) {
           //default cordinates
           this.subscribers.city = this.getWeatherByLocation(appConfig.defaultCity.coord.latitude,appConfig.defaultCity.coord.longitude).subscribe((weather) => {
-            resolve(weather.city);
+            resolve(weather);
+            //resolve(weather.city);
             //this.hideLoader();
           });
         }else{
