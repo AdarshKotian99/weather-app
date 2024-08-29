@@ -10,6 +10,11 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { AppService } from './services/app.service';
 import { WeatherComponent } from './weather/weather.component';
 import { HelperService } from './services/helper.service';
+import { HttpClientModule } from '@angular/common/http';
+import { CityCardComponent } from './city-card/city-card.component';
+import { ResolveLocationService } from './services/resolve-location.service';
+import { ForecastComponent } from './forecast/forecast.component';
+import { ForecastItemComponent } from './forecast-item/forecast-item.component';
 
 @NgModule({
   declarations: [
@@ -17,16 +22,20 @@ import { HelperService } from './services/helper.service';
     LoaderComponent,
     HeaderComponent,
     SearchBarComponent,
-    WeatherComponent
+    WeatherComponent,
+    CityCardComponent,
+    ForecastComponent,
+    ForecastItemComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    UiSwitchModule
+    UiSwitchModule,
+    HttpClientModule
   ],
   providers: [
     AppService,
-    HelperService,
+    HelperService
   ],
   bootstrap: [AppComponent]
 })

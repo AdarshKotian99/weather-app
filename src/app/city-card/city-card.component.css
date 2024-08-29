@@ -1,0 +1,205 @@
+.city-card{
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.city-card__header{
+    padding: 1.18em 0;
+}
+
+.city-card__box{
+    position: relative;
+    font-family: var(--nunito);
+    box-sizing: border-box;
+    border-radius: 2px;
+    padding: 2em 0 0 0;
+    margin: 0 auto;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+}
+
+.city-card__box::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.city-card__temprature{
+    font-size: 4em;
+    text-align: center;
+}
+
+.city-card__temprature span{
+    position: relative;
+    left: -10px;
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.city-card__temprature span::before,
+.city-card__temprature span::after{
+    display: block;
+    position: absolute;
+}
+
+.city-card__temprature span::before{
+    content: attr(data-deg);
+    top: -13px;
+    right: -17px;
+    font-weight: 300;
+    font-size: 90%;
+}
+
+.city-card__temprature span::after{
+    content: attr(data-unit);
+    bottom: 7px;
+    right: -26px;
+    font-size: 55%;
+}
+
+.city-card__updated-label{
+    position: absolute;
+    top: 3.8em;
+    right: 0;
+    width: 30%;
+    color: #9a9a9a;
+    font-size: .5em;
+    font-weight: 300;
+    text-align: right;
+    text-transform: uppercase;
+    opacity: .8;
+    padding: .3em 3% .2em 0%;
+    background: -moz-linear-gradient(left, rgba(255, 255, 255, 0), #f7f5f5);
+    background: -ms-linear-gradient(left, rgba(255, 255, 255, 0), #f7f5f5);
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), #f7f5f5);
+}
+
+.city-card__updated-label span{
+    color: #656565;
+    font-size: 1.3em;
+}
+
+.city-card__sky-icon{
+    position: absolute;
+    top: 2.5em;
+    left: 8%;
+}
+
+.city-card__sky-icon .wi{
+    font-size: 6em;
+}
+
+.city-card__city-name{
+    width: 74%;
+    font-size: 2em;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 auto .5em auto;
+}
+
+.city-card__sky-state--city-name{
+    font-size: .5em;
+    text-transform: lowercase;
+    opacity: .7;
+}
+
+.city-card__date-time{
+    position: absolute;
+    top: 3em;
+    right: 3%;
+    font-size: 1em;
+    text-align: right;
+}
+
+.city-card__clock{
+    display: block;
+    font-size: 2.5em;
+}
+
+.city-card__date{
+    display: block;
+    text-transform: uppercase;
+    margin-right: .1em;
+}
+
+.city-card__info{
+    display: flex;
+    justify-content: center;
+    color: #656565;
+    font-size: .8em;
+}
+
+.city-card__info-list{
+    margin: 0 9%;
+}
+
+@media screen and (max-width: 33.125em){
+    .city-card__updated-label{
+        top: 1.8em;
+    }
+
+    .city-card__sky-icon{
+        top: 4em;
+        font-size: 60%;
+    }
+
+    .city-card__temprature{
+        font-size: 2.7em;
+    }
+
+    .city-card__date-time{
+        font-size: .7em;
+    }
+}
+
+@media screen and (max-width: 31.25em){
+    .city-card__updated-label{
+        width: 50%;
+    }
+
+    .city-card__temprature{
+        font-size: 3em;
+    }
+
+    .city-card__date-time{
+        font-size: .8em;
+    }
+
+    .city-card__info{
+        flex-flow: wrap;
+        text-align: center;
+        font-size: .9em;
+        padding: 0;
+    }
+
+    .city-card__info-list{
+        flex: 0 0 50%;
+        margin: 0 2.5% 0 2.5%;
+    }
+
+    .city-card__info-list:first-child{
+        margin-bottom: 1em;
+    }
+}
+
+@media screen and (max-width: 23.125em){
+    .city-card__sky-icon{
+        top: 4em;
+        font-size: 45%;
+    }
+
+    .city-card__updated-label{
+        top: 0.8em;
+    }
+
+    .city-card__date{
+        font-size: 120%;
+    }
+
+    .city-card__date-time{
+        top: 2.5em;
+        font-size: .6em;
+    }
+}
