@@ -23,7 +23,9 @@ export const apiConfig = {
             pressure: 'hPa'
         }
     },
+    amountForecastDays: 16,
     updateInterval:{
+        forecast: 300000,
         weather: 300000 // 5 minutes
     }
 };

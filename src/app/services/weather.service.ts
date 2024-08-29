@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, switchMap,interval,startWith,map,Subject,catchError,throwError } from 'rxjs';
+import { Observable, switchMap,interval,startWith,map,Subject,catchError,throwError, firstValueFrom } from 'rxjs';
 import { apiConfig,appConfig } from '../config';
 import { HttpClient } from '@angular/common/http';
 import { AppService } from './app.service';
 import { Weather } from '../weather/weather';
 import { WeatherIconService } from './weather-icon.service';
 import { HelperService } from './helper.service';
-import { resolve } from 'dns';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +16,8 @@ export class WeatherService {
   private weather: Subject<Weather> = new Subject<Weather>();
   private currentWeatherTimestamp!: number;
   private subscribers: any = {};
+  private longitude !: number;
+  private latitude !: number;
   constructor(
     private http: HttpClient,
     private appService: AppService,
@@ -83,7 +84,18 @@ export class WeatherService {
     )
   }
 
+  
+
+
+  // async getCoordinates(city : string):Promise<{longitude : number , latitude : number}>{
+  //   const response = await firstValueFrom(
+  //     this.http.get<any>(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiConfig.appId}`)
+  //   ); 
+  //   return { longitude : response.lon , latitude : response.lat};
+  // }
+
   private handleResponseWeatherData(responseData: any):Weather{
+    //const { coord, name, main, weather, wind, sys, dt } = responseData;
     const { name, main, weather, wind, sys, dt } = responseData;
     this.currentWeatherTimestamp = dt;
     const updateAt = new Date().getTime();
@@ -96,6 +108,8 @@ export class WeatherService {
     const windBeaufortScale = this.helperService.getWindBeaufortScaleByMeterInSecond(wind.speed);
     const sunriseTime = sys.sunrise * 1000;
     const sunsetTime = sys.sunset * 1000;
+    // const longitude = coord.lon;
+    // const latitude = coord.lat;
     return new Weather(
       updateAt,
       name,

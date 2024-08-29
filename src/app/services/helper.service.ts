@@ -54,8 +54,13 @@ export class HelperService {
   }
 
   isItCurrentDayByTimestamps(firstTimestamp:number, secondTimestamp:number): boolean {
-    const days = [firstTimestamp, secondTimestamp].map(timestamp => Math.floor(timestamp / (3600 * 24)));
-    return days[0] === days[1];
+    // const days = [firstTimestamp, secondTimestamp].map(timestamp => Math.floor(timestamp / (3600 * 24)));
+    // return days[0] === days[1];
+
+    const firstDate = new Date(firstTimestamp * 1000).toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' });
+    const secondDate = new Date(secondTimestamp * 1000).toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' });
+
+    return firstDate === secondDate;
   }
 
 }

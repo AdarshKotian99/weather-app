@@ -1,0 +1,18 @@
+<li class="forecast-item">
+    <!-- <div class="forecast-item__date" *ngIf="currentDay">
+        <strong>{{date | date : 'h:mm a' : 'Asia/Kolkata'}}</strong>
+    </div> 
+    <div class="forecast-item__date" *ngIf="!currentDay">{{date | date : 'EEE dd MMM, h:mm a' : 'Asia/Kolkata'}}</div>-->
+    <div class="forecast-item__date">{{date | date : 'EEE dd MMM,' : 'Asia/Kolkata'}}</div>
+    <div class="forecast-item__date">{{date | date : 'h:mm a' : 'Asia/Kolkata'}}</div>
+    <div class="forecast-item__sky-state">
+        <span [class]="iconClassname"></span>
+    </div>
+    <div class="forecast-item__temperature forecast-item__temperature--day">
+        <span class="forecast-item__temperature-data" data-deg="°" [attr.data-unit]="measureOfTemp">{{temperatureDay}}</span>
+    </div>
+    <div class="forecast-item__temperature forecast-item__temperature--night">
+        <span class="forecast-item__temperature-data" data-deg="°" [attr.data-unit]="measureOfTemp">{{temperatureNight}}</span>
+    </div>
+    <div class="forecast-item__natural-phenomen">{{description}}</div>
+</li>
