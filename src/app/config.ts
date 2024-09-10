@@ -2,8 +2,10 @@ export const appConfig ={
     defaultUnit: 'metric',
     defaultCity: {
         coord: {
-          latitude: 51.509865,
-          longitude: -0.118092
+          latitude: 19.0144,
+          longitude: 72.8479
+        //   latitude: 51.509865,
+        //   longitude: -0.118092
         }
       }
 };
