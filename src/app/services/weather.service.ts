@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { Weather } from '../weather/weather';
 import { WeatherIconService } from './weather-icon.service';
 import { HelperService } from './helper.service';
+import { LoaderService } from '../loader/loader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,8 @@ export class WeatherService {
     private http: HttpClient,
     private appService: AppService,
     private weatherIconsService : WeatherIconService,
-    private helperService : HelperService
+    private helperService : HelperService,
+    private loaderService : LoaderService
   ) {
     this.unitSystem = appService.getUnitSystem();
    }
@@ -35,7 +37,7 @@ export class WeatherService {
   }
 
   getWeatherByСurrentLocation(): Promise<any>{
-    //this.showLoader();
+    this.showLoader();
     if (this.subscribers.city) {
       this.subscribers.city.unsubscribe();
     }
@@ -46,7 +48,7 @@ export class WeatherService {
         this.subscribers.city = this.getWeatherByLocation(latitude,longitude).subscribe((weather) => {
           resolve(weather);
           //resolve(weather.city);
-          //this.hideLoader();
+          this.hideLoader();
         });
       },(error) => {
         //if user doesn't gives access
@@ -54,12 +56,11 @@ export class WeatherService {
           //default cordinates
           this.subscribers.city = this.getWeatherByLocation(appConfig.defaultCity.coord.latitude,appConfig.defaultCity.coord.longitude).subscribe((weather) => {
             resolve(weather);
-            //resolve(weather.city);
-            //this.hideLoader();
+            this.hideLoader();
           });
         }else{
           console.error(error);
-          //this.hideLoader();
+          this.hideLoader();
         }
       }
     );
@@ -84,18 +85,51 @@ export class WeatherService {
     )
   }
 
+  getWeatherOfCity(city: string):Promise <any>{
+    console.log('inside getWeatherOfCity:-');
+    this.showLoader();
+    if (this.subscribers.city) {
+      this.subscribers.city.unsubscribe();
+    }
+
+    return new Promise((resolve,reject) => {
+      this.subscribers.city = this.getWeatherByCity(city).subscribe({
+        next:(weather)=> {
+          resolve(weather);
+             this.hideLoader();
+        },
+        error:(error) => {
+          reject(error);
+             this.hideLoader();
+        }
+      });
+    });
+  }
+
+  getWeatherByCity(city:string):Observable<any>{
+    return interval(this.weatherUpdateInterval).pipe(
+      startWith(0),
+      switchMap(()=>
+        this.http.get(`${apiConfig.host}/weather?q=${city}&units=${this.unitSystem}&appid=${apiConfig.appId}`)
+        .pipe(
+          map((data) => {
+            console.log('data:-'+JSON.stringify(data));
+            const weather = this.handleResponseWeatherData(data);
+            console.log('weather:-'+JSON.stringify(weather));
+            this.weather.next(weather);
+            return weather;
+          }),
+          catchError(this.handleError)
+        )
+      )
+    )
+  }
+
   
-
-
-  // async getCoordinates(city : string):Promise<{longitude : number , latitude : number}>{
-  //   const response = await firstValueFrom(
-  //     this.http.get<any>(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiConfig.appId}`)
-  //   ); 
-  //   return { longitude : response.lon , latitude : response.lat};
-  // }
 
   private handleResponseWeatherData(responseData: any):Weather{
     //const { coord, name, main, weather, wind, sys, dt } = responseData;
+    console.log('inside handleResponseWeatherData');
     const { name, main, weather, wind, sys, dt } = responseData;
     this.currentWeatherTimestamp = dt;
     const updateAt = new Date().getTime();
@@ -127,14 +161,15 @@ export class WeatherService {
   }
 
   private handleError(error: any): Observable<any> {
-    return throwError(() => error.message || error);
+    //return throwError(() => error.message || error);
+    return throwError(() => error);
   }
 
-  // private showLoader(): void {
-  //   this.loaderService.show();
-  // }
+   private showLoader(): void {
+     this.loaderService.show();
+   }
 
-  // private hideLoader(): void {
-  //   this.loaderService.hide();
-  // }
+   private hideLoader(): void {
+    this.loaderService.hide();
+   }
 }

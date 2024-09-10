@@ -15,6 +15,8 @@ import { CityCardComponent } from './city-card/city-card.component';
 import { ResolveLocationService } from './services/resolve-location.service';
 import { ForecastComponent } from './forecast/forecast.component';
 import { ForecastItemComponent } from './forecast-item/forecast-item.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { ForecastItemComponent } from './forecast-item/forecast-item.component';
     WeatherComponent,
     CityCardComponent,
     ForecastComponent,
-    ForecastItemComponent
+    ForecastItemComponent,
+    NotFoundComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

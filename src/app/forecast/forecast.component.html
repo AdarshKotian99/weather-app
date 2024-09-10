@@ -1,5 +1,5 @@
 <div class="forecast" *ngIf="firstWeekForecast.length > 0">
-    <h2 class="forecast__header">Forecast for {{forecastDays}}</h2>
+    <h2 class="forecast__header">Future Forecasts</h2>
     <ul class="forecast__list forecast__list--first-week">
         <app-forecast-item *ngFor="let dayOfFirstWeek of firstWeekForecast" [currentDay]="dayOfFirstWeek.currentDay" [date]="dayOfFirstWeek.date" [temperatureDay]="dayOfFirstWeek.temperatureDay" [temperatureNight]="dayOfFirstWeek.temperatureNight" [iconClassname]="dayOfFirstWeek.iconClassname" [measureOfTemp]="measureOfTemp" [description]="dayOfFirstWeek.description"></app-forecast-item> 
     </ul>
