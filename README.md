@@ -1,4 +1,6 @@
-# WeatherApp
+# WeatherApp - with search and geolocation option for receiving current weather and forecasts.
+
+[Live Demo](https://adarshkotian99.github.io/weather-app/mumbai)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.1.
 
