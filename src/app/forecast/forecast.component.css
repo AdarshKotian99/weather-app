@@ -70,7 +70,7 @@ ul, ol {
         margin: 0 auto;
     }
 
-    .forecsat__list{
+    .forecast__list{
         flex-flow: wrap;
         padding: 0;
     }

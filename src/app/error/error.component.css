@@ -1,0 +1,8 @@
+.error-box{
+    font-size: 1.2em;
+  text-align: center;
+}
+
+.error-box__title{
+    margin-bottom: 20px;
+}

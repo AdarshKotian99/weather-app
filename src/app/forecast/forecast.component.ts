@@ -27,7 +27,7 @@ export class ForecastComponent implements  OnChanges, OnDestroy {
   firstWeekForecast : Forecast[] =[];
   secondWeekForecast : Forecast[] = [];
   isSecondWeekForecastListShow: boolean = false;
-  forecastDays !: number;
+  //forecastDays !: number;
 
   constructor(private forecastService : ForecastService) { }
 
@@ -50,17 +50,17 @@ export class ForecastComponent implements  OnChanges, OnDestroy {
       this.firstWeekForecast = forecastData.slice(0,7);
       //console.log('this.firstWeekForecast:-',this.firstWeekForecast);
       this.secondWeekForecast = forecastData.slice(7,14);
-      this.recalculateForecastDays();
+      //this.recalculateForecastDays();
     });
   }
 
-  private recalculateForecastDays():void {
-    this.forecastDays = this.isSecondWeekForecastListShow ? 14 : 7;
-  }
+  // private recalculateForecastDays():void {
+  //   this.forecastDays = this.isSecondWeekForecastListShow ? 14 : 7;
+  // }
 
   toggleSecondWeekForecastList(): void {
     this.isSecondWeekForecastListShow = !this.isSecondWeekForecastListShow;
-    this.recalculateForecastDays();
+    //this.recalculateForecastDays();
   }
 
   ngOnDestroy(): void {
