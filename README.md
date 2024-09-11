@@ -1,4 +1,4 @@
-# WeatherApp - with search and geolocation option for receiving current weather and forecasts.
+# WeatherApp - with search and geolocation option for receiving current weather and forecasts.[Angular 13]
 
 [Live Demo](https://adarshkotian99.github.io/weather-app/mumbai)
 
